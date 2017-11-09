@@ -1,0 +1,14 @@
+{
+  "name": "Emotion Analyzer",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "description": "Analyze emotions based on your text inputs.",
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["jquery-3.2.1.min.js", "app.js"]
+    }
+  ]
+}
+
+// https://developer.chrome.com/extensions/content_scripts
