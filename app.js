@@ -13,13 +13,23 @@ const forms = document.querySelectorAll('[target="tweet-post-iframe"]');
 forms.forEach(form => {
   const counter = form.querySelector('.TweetBoxUploadProgress');
   counter.insertAdjacentHTML('beforebegin',
-    '<span id="emotions" class="TweetBoxExtras-item"></span>'
+    `<span id="mooder-container" class="TweetBoxExtras-item">
+      <span class="Icon Icon--Mooder" style="line-height: 12px;">
+        <img
+          style="padding: 0 8px;"
+          width="20"
+          height"20"
+          src="https://image.ibb.co/jnHc0w/g8898.png"
+        />
+      </span>
+      <span id="emotions" style="padding: 0 14px; line-height: 12px; position: relative; bottom: 1px;">💤</span>
+    </span>`
   );
 
   // add listeners to tweet textareas:
   form.querySelectorAll('[name="tweet"]').forEach(tweet => {
     tweet.addEventListener('input', (e) => {
-      if (e.data === " ") fetchEmotion(e.target.textContent, form);
+      if (e.data === " " || e.data === ".") fetchEmotion(e.target.textContent, form);
     });
   });
 
@@ -70,11 +80,11 @@ function tonesToEmojis(tones) {
 function setEmotions(tones) {
   const text = tones.length > 0
     ? `
-        Mood: <span style="font-size: 1.6em">
+        <span style="font-size: 1.4em">
           ${ tonesToEmojis(tones).join(" ") }
         </span>
       `
-    : '';
+    : '💤';
   
   document.getElementById('emotions').innerHTML = text;
 }
